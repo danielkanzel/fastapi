@@ -121,12 +121,10 @@ jobs:
         with:
           repository: danielkanzel/danielkanzel.github.io
           path: danielkanzel.github.io
-      - name: Cleaning
-        run: find ./danielkanzel.github.io -path ./danielkanzel.github.io/.git -prune -o -exec rm -rf {} \; 2> /dev/null
       - name: Copy files
-        run: cp -r ./site/* danielkanzel.github.io 
+        run: cp -r ./danielkanzel.github.io/.git ./site/
       - name: Git
-        run: cd danielkanzel.github.io && git add . && git commit -m "new site" && git push
+        run: git add site && git commit -m "new site" && git push
       
       
       
