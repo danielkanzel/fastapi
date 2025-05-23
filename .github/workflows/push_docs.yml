@@ -75,9 +75,6 @@ jobs:
       - langs
     if: ${{ needs.changes.outputs.docs == 'true' }}
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        lang: ${{ fromJson(needs.langs.outputs.langs) }}
     steps:
       - name: Dump GitHub context
         env:
@@ -107,15 +104,30 @@ jobs:
         run: python ./scripts/docs.py update-languages
       - uses: actions/cache@v4
         with:
-          key: mkdocs-cards-${{ matrix.lang }}-${{ github.ref }}
-          path: docs/${{ matrix.lang }}/.cache
+          key: mkdocs-cards-ru-${{ github.ref }}
+          path: docs/ru/.cache
       - name: Build Docs
         run: python ./scripts/docs.py build-lang ${{ matrix.lang }}
       - uses: actions/upload-artifact@v4
         with:
-          name: docs-site-${{ matrix.lang }}
+          name: docs-site-ru
           path: ./site/**
           include-hidden-files: true
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - uses: actions/checkout@v4
+        with:
+          repository: danielkanzel/danielkanzel.github.io
+          path: danielkanzel.github.io
+      - name: Copy files
+        run: cp -r ./site/* danielkanzel.github.io 
+      - name: Git
+        run: cd danielkanzel.github.io && git add danielkanzel.github.io && git commit -m "new site" && git push
+      
+      
+      
 
   # https://github.com/marketplace/actions/alls-green#why
   docs-all-green:  # This job does nothing and is only used for the branch protection
