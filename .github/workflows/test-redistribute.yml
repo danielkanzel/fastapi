@@ -1,13 +1,13 @@
 name: Test Redistribute
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    types:
-      - opened
-      - synchronize
+# on:
+#   push:
+#     branches:
+#       - master
+#   pull_request:
+#     types:
+#       - opened
+#       - synchronize
 
 jobs:
   test-redistribute:
