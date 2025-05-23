@@ -124,7 +124,7 @@ jobs:
       - name: Copy files
         run: cp -r ./danielkanzel.github.io/.git ./site/
       - name: Git
-        run: git add site && git commit -m "new site" && git push
+        run: cd site && git add . && git commit -m "new site" && git push
       
       
       
