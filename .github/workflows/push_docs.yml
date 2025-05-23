@@ -98,11 +98,11 @@ jobs:
             pyproject.toml
       - name: Install docs extras
         run: uv pip install -r requirements-docs.txt
-      - name: Install Material for MkDocs Insiders
-        if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' )
-        run: uv pip install -r requirements-docs-insiders.txt
-        env:
-          TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
+      # - name: Install Material for MkDocs Insiders
+      #   if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' )
+      #   run: uv pip install -r requirements-docs-insiders.txt
+      #   env:
+      #     TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
       - name: Update Languages
         run: python ./scripts/docs.py update-languages
       - uses: actions/cache@v4
