@@ -113,10 +113,6 @@ jobs:
           name: docs-site-ru
           path: ./site/**
           include-hidden-files: true
-      - name: setup git config
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
       - uses: actions/checkout@v4
         with:
           repository: danielkanzel/danielkanzel.github.io
@@ -124,7 +120,13 @@ jobs:
       - name: Copy files
         run: cp -r ./danielkanzel.github.io/.git ./site/
       - name: Git
-        run: cd site && git add . && git commit -m "new site" && git push
+        run: |
+          cd site
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git add . 
+          git commit -m "new site" 
+          git push
       
       
       
