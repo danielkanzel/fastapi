@@ -57,11 +57,11 @@ jobs:
       - name: Install docs extras
         run: uv pip install -r requirements-docs.txt
       # Install MkDocs Material Insiders here just to put it in the cache for the rest of the steps
-      - name: Install Material for MkDocs Insiders
-        if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' )
-        run: uv pip install -r requirements-docs-insiders.txt
-        env:
-          TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
+      # - name: Install Material for MkDocs Insiders
+      #   if: ( github.event_name != 'pull_request' || github.secret_source == 'Actions' )
+      #   run: uv pip install -r requirements-docs-insiders.txt
+      #   env:
+      #     TOKEN: ${{ secrets.FASTAPI_MKDOCS_MATERIAL_INSIDERS }}
       - name: Verify Docs
         run: python ./scripts/docs.py verify-docs
       - name: Export Language Codes
