@@ -122,7 +122,7 @@ jobs:
           repository: danielkanzel/danielkanzel.github.io
           path: danielkanzel.github.io
       - name: Cleaning
-        run: git rm -rf danielkanzel.github.io && git clean -fxd
+        run: git rm -rf ./danielkanzel.github.io/* && git clean -fxd
       - name: Copy files
         run: cp -r ./site/* danielkanzel.github.io 
       - name: Git
