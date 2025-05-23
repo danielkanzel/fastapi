@@ -117,7 +117,7 @@ jobs:
         with:
           repository: danielkanzel/danielkanzel.github.io
           path: danielkanzel.github.io
-          token:  ${{ secrets.GITHUB_TOKEN }}
+          token:  ${{ secrets.ACTIONS_GITHUB_TOKEN }}
       - name: Copy files
         run: cp -r ./danielkanzel.github.io/.git ./site/
       - name: Git
